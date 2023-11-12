@@ -27,7 +27,7 @@ void main() {
       .returns((x) => x + 1)
       .using(monad)
       .apply(monad.returns(2))
-      .bind((i) => monad.returns((int j) => i + j))
+      .bind((i) => monad.returns((j) => i + j))
       .apply(monad.returns(4))
       .map((i) => i.toString());
 
