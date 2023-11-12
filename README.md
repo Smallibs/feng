@@ -21,13 +21,19 @@ TODO
 
 ```dart
 
-final monad = Monad();
+void main() {
+  final monad = Monad();
 
-final ma = monad
-    .infix(monad.returns((x) => x + 1))
-    .apply(monad.pure(2))
-    .map((i) => i.toString())
-    .bind((i) => monad.returns("result is $i"));
+  final ma = monad
+      .returns((x) => x + 1)
+      .using(monad)
+      .apply(monad.pure(2))
+      .bind((i) => monad.returns((int j) => i + j))
+      .apply(monad.pure(4))
+      .map((i) => i.toString());
+
+  // ...
+}
 ```
 
 # License

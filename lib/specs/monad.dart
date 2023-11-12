@@ -8,13 +8,6 @@ mixin Monad<M> on Applicative<M> {
   HKP<M, B> bind<A, B>(HKP<M, A> ma, Fun<A, HKP<M, B>> f);
 }
 
-extension MonadInfix<M> on Monad<M> {
-  (Monad<M>, HKP<M, A>) infix<A>(HKP<M, A> ma) => (this, ma);
-}
-
-extension MonadExtension<E extends Monad<M>, M, A> on (
-  E,
-  HKP<M, A>,
-) {
+extension BindExtension<E extends Monad<M>, M, A> on (E, HKP<M, A>) {
   (E, HKP<M, B>) bind<B>(Fun<A, HKP<M, B>> f) => ($1, $1.bind($2, f));
 }

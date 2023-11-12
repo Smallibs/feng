@@ -12,13 +12,9 @@ abstract class ApplicativeWithMap<M> implements Applicative<M> {
   HKP<M, B> map<A, B>(Fun<A, B> f, HKP<M, A> ma) => apply(pure(f), ma);
 }
 
-extension ApplicativeInfix<M> on Applicative<M> {
-  (Applicative<M>, HKP<M, A>) infix<A>(HKP<M, A> ma) => (this, ma);
-}
-
 extension ApplyExtension<E extends Applicative<M>, M, A, B> on (
   E,
-  HKP<M, Fun<A, B>>,
+  HKP<M, Fun<A, B>>
 ) {
   (E, HKP<M, B>) apply(HKP<M, A> ma) => ($1, $1.apply($2, ma));
 }

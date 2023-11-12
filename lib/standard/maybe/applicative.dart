@@ -4,8 +4,6 @@ import 'package:feng/standard/maybe/functor.dart';
 import 'package:feng/standard/maybe/maybe.dart';
 
 class Applicative extends specs.ApplicativeWithMap<MaybeK> {
-  final Functor functor = Functor();
-
   @override
   HKP<MaybeK, A> pure<A>(A a) => Maybe.some(a);
 

@@ -1,6 +1,7 @@
 import 'package:feng/core/types.dart';
 import 'package:feng/specs/applicative.dart' as applicative;
 import 'package:feng/specs/functor.dart';
+import 'package:feng/specs/infix.dart';
 import 'package:feng/specs/monad.dart' as specs;
 import 'package:feng/standard/maybe/applicative.dart';
 import 'package:feng/standard/maybe/maybe.dart';
