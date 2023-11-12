@@ -5,7 +5,7 @@ mixin MaybeK {
   static Maybe<A> fix<A>(HKP<MaybeK, A> ma) => ma as Maybe<A>;
 }
 
-mixin Maybe<A> implements HKP<MaybeK, A> {
+sealed class Maybe<A> implements HKP<MaybeK, A> {
   static Maybe<A> some<A>(A b) => _Some(b);
 
   static Maybe<A> none<A>() => _None();
@@ -27,12 +27,11 @@ class _None<A> implements Maybe<A> {
 
 extension Foldable<A> on HKP<MaybeK, A> {
   B fold<B>(Fun<A, B> some, Supplier<B> none) {
-    final self = MaybeK.fix(this);
-
-    if (self is _Some<A>) {
-      return some(self._a);
-    } else {
-      return none();
+    switch (MaybeK.fix(this)) {
+      case _Some(_a: var a):
+        return some(a);
+      case _None():
+        return none();
     }
   }
 }
