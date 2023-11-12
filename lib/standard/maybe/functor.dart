@@ -4,8 +4,8 @@ import 'package:feng/specs/functor.dart' as specs;
 
 import 'maybe.dart';
 
-class Functor implements specs.Functor<Maybe> {
+class Functor implements specs.Functor<MaybeK> {
   @override
-  HKP<Maybe, B> map<A, B>(Fun<A, B> f, HKP<Maybe, A> ma) =>
+  HKP<MaybeK, B> map<A, B>(Fun<A, B> f, HKP<MaybeK, A> ma) =>
       ma.fold(f.then(Maybe.some), Maybe.none);
 }
