@@ -1,6 +1,5 @@
 import 'package:feng/core/types.dart';
 import 'package:feng/specs/applicative.dart' as specs;
-import 'package:feng/standard/maybe/functor.dart';
 import 'package:feng/standard/maybe/maybe.dart';
 
 class Applicative extends specs.ApplicativeWithMap<MaybeK> {
