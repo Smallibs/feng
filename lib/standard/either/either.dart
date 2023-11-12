@@ -1,6 +1,6 @@
 import 'package:feng/core/types.dart';
 
-mixin EitherK<E> {
+sealed class EitherK<E> {
   // Unsafe part!
   static Either<E, A> fix<E, A>(HKP<EitherK<E>, A> ma) => ma as Either<E, A>;
 }

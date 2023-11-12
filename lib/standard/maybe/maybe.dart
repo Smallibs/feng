@@ -1,6 +1,6 @@
 import 'package:feng/core/types.dart';
 
-mixin MaybeK {
+sealed class MaybeK {
   // Unsafe part!
   static Maybe<A> fix<A>(HKP<MaybeK, A> ma) => ma as Maybe<A>;
 }
