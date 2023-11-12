@@ -20,7 +20,6 @@ TODO
 ## Monad Example
 
 ```dart
-
 void main() {
   final monad = Monad();
 
