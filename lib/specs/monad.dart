@@ -12,5 +12,5 @@ abstract class Monad<M> extends Applicative<M> {
 }
 
 extension MonadExtension<M, A, B> on (Monad<M>, HKP<M, A>) {
-  (Applicative<M>, HKP<M, B>) bind(Fun<A, HKP<M, B>> f) => ($1, $1.bind($2, f));
+  (Monad<M>, HKP<M, B>) bind(Fun<A, HKP<M, B>> f) => ($1, $1.bind($2, f));
 }
