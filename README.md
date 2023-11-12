@@ -26,7 +26,7 @@ void main() {
   final ma = monad
       .returns((x) => x + 1)
       .using(monad)
-      .apply(monad.pure(2))
+      .apply(monad.returns(2))
       .bind((i) => monad.returns((int j) => i + j))
       .apply(monad.returns(4))
       .map((i) => i.toString());
