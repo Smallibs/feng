@@ -1,7 +1,7 @@
 name: feng
-description: A sample command-line application.
+description: A Dart library providing some functional programming idioms.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/Smallibs/feng
 
 environment:
   sdk: ^3.1.5
