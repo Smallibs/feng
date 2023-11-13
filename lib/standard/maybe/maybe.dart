@@ -4,7 +4,7 @@ import 'package:feng/standard/maybe/applicative.dart';
 import 'package:feng/standard/maybe/monad.dart';
 
 sealed class MaybeK {
-  // Unsafe part!
+  // Unsafe part but sealed capability reduces to zero any risk of bad cast!
   static Maybe<A> fix<A>(HKP<MaybeK, A> ma) => ma as Maybe<A>;
 }
 

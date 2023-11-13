@@ -1,7 +1,7 @@
 import 'package:feng/core/types.dart';
 
 sealed class EitherK<E> {
-  // Unsafe part!
+  // Unsafe part but sealed capability reduces to zero any risk of bad cast!
   static Either<E, A> fix<E, A>(HKP<EitherK<E>, A> ma) => ma as Either<E, A>;
 }
 
