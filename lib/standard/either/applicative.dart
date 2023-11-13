@@ -3,7 +3,7 @@ import 'package:feng/specs/applicative.dart' as specs;
 import 'package:feng/standard/either/either.dart';
 import 'package:feng/standard/either/functor.dart';
 
-class Applicative<E> extends specs.ApplicativeWithMap<EitherK<E>> {
+class Applicative<E> extends specs.ApplicativeWithPureAndApply<EitherK<E>> {
   final Functor<E> functor = Functor();
 
   @override

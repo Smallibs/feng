@@ -3,11 +3,8 @@ import 'package:feng/specs/monad.dart' as specs;
 import 'package:feng/standard/maybe/applicative.dart';
 import 'package:feng/standard/maybe/maybe.dart';
 
-class Monad implements specs.Monad<MaybeK> {
-  final Applicative applicative = Applicative();
-
-  @override
-  HKP<MaybeK, A> returns<A>(A a) => applicative.pure(a);
+class Monad extends specs.MonadWithPureAndApply<MaybeK> {
+  const Monad();
 
   @override
   HKP<MaybeK, B> bind<A, B>(HKP<MaybeK, A> ma, Fun<A, HKP<MaybeK, B>> f) =>
@@ -16,14 +13,9 @@ class Monad implements specs.Monad<MaybeK> {
   // Delegation
 
   @override
-  HKP<MaybeK, B> apply<A, B>(
-          HKP<MaybeK, B Function(A)> mf, HKP<MaybeK, A> ma) =>
-      applicative.apply(mf, ma);
+  HKP<MaybeK, B> apply<A, B>(HKP<MaybeK, Fun<A, B>> mf, HKP<MaybeK, A> ma) =>
+      Maybe.applicative.apply(mf, ma);
 
   @override
-  HKP<MaybeK, B> map<A, B>(Fun<A, B> f, HKP<MaybeK, A> ma) =>
-      applicative.map(f, ma);
-
-  @override
-  HKP<MaybeK, A> pure<A>(A a) => applicative.pure(a);
+  HKP<MaybeK, A> pure<A>(A a) => Maybe.applicative.pure(a);
 }

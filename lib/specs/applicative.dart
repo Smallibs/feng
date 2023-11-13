@@ -1,13 +1,22 @@
+import 'package:feng/core/fun.dart';
 import 'package:feng/core/types.dart';
 import 'package:feng/specs/functor.dart';
 
 mixin Applicative<M> on Functor<M> {
   HKP<M, A> pure<A>(A a);
 
+  HKP<M, (A, B)> product<A, B>(HKP<M, A> ma, HKP<M, B> mb);
+
   HKP<M, B> apply<A, B>(HKP<M, Fun<A, B>> mf, HKP<M, A> ma);
 }
 
-abstract class ApplicativeWithMap<M> implements Applicative<M> {
+abstract class ApplicativeWithPureAndApply<M> implements Applicative<M> {
+  const ApplicativeWithPureAndApply();
+
+  @override
+  HKP<M, (A, B)> product<A, B>(HKP<M, A> ma, HKP<M, B> mb) =>
+      apply(map(curry((A a, B b) => (a, b)), ma), mb);
+
   @override
   HKP<M, B> map<A, B>(Fun<A, B> f, HKP<M, A> ma) => apply(pure(f), ma);
 }

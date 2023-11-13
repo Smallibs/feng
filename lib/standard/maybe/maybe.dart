@@ -1,4 +1,7 @@
 import 'package:feng/core/types.dart';
+import 'package:feng/standard/maybe/functor.dart';
+import 'package:feng/standard/maybe/applicative.dart';
+import 'package:feng/standard/maybe/monad.dart';
 
 sealed class MaybeK {
   // Unsafe part!
@@ -6,6 +9,10 @@ sealed class MaybeK {
 }
 
 sealed class Maybe<A> implements HKP<MaybeK, A> {
+  static const Functor functor = Functor();
+  static const Applicative applicative = Applicative();
+  static const Monad monad = Monad();
+
   static Maybe<A> some<A>(A b) => _Some(b);
 
   static Maybe<A> none<A>() => _None();
