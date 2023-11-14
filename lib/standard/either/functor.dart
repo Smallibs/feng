@@ -6,5 +6,5 @@ import 'package:feng/standard/either/either.dart';
 class Functor<E> implements specs.Functor<EitherK<E>> {
   @override
   HKP<EitherK<E>, B> map<A, B>(Fun<A, B> f, HKP<EitherK<E>, A> ma) =>
-      ma.fold(Either.left, f.then(Either.right));
+      ma.fold(Api.left, f.then(Api.right));
 }

@@ -7,5 +7,5 @@ class Functor implements specs.Functor<IdentityK> {
 
   @override
   HKP<IdentityK, B> map<A, B>(Fun<A, B> f, HKP<IdentityK, A> ma) =>
-      Identity.id(ma.fold(f));
+      Api.id(ma.fold(f));
 }

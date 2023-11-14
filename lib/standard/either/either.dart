@@ -14,6 +14,10 @@ final class Api {
   static specs.Applicative<EitherK<E>> applicative<E>() => Applicative();
 
   static specs.Monad<EitherK<E>> monad<E>() => Monad();
+
+  static Either<E, A> right<E, A>(A a) => _Right(a);
+
+  static Either<E, A> left<E, A>(E e) => _Left(e);
 }
 
 sealed class EitherK<E> {
@@ -21,11 +25,7 @@ sealed class EitherK<E> {
   static Either<E, A> fix<E, A>(HKP<EitherK<E>, A> ma) => ma as Either<E, A>;
 }
 
-sealed class Either<E, A> implements HKP<EitherK<E>, A> {
-  static Either<E, A> right<E, A>(A a) => _Right(a);
-
-  static Either<E, A> left<E, A>(E e) => _Left(e);
-}
+sealed class Either<E, A> implements HKP<EitherK<E>, A> {}
 
 final class _Left<E, A> implements Either<E, A> {
   final E _e;

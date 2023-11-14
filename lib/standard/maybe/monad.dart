@@ -7,5 +7,5 @@ class Monad extends specs.MonadWithPureAndApply<MaybeK> {
 
   @override
   HKP<MaybeK, B> bind<A, B>(HKP<MaybeK, A> ma, Fun<A, HKP<MaybeK, B>> f) =>
-      ma.fold(f, Maybe.none);
+      ma.fold(f, Api.none);
 }

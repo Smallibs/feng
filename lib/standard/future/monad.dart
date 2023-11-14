@@ -7,5 +7,5 @@ class Monad extends specs.MonadWithPureAndApply<FutureK> {
 
   @override
   HKP<FutureK, B> bind<A, B>(HKP<FutureK, A> ma, Fun<A, HKP<FutureK, B>> f) =>
-      FutureK.of(FutureK.fix(ma).then<B>((a) => FutureK.fix(f(a))));
+      FutureK.of(FutureK.fix(ma).then((a) => FutureK.fix(f(a))));
 }

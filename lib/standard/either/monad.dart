@@ -9,5 +9,5 @@ class Monad<E> extends specs.MonadWithPureAndApply<EitherK<E>> {
   @override
   HKP<EitherK<E>, B> bind<A, B>(
           HKP<EitherK<E>, A> ma, Fun<A, HKP<EitherK<E>, B>> f) =>
-      ma.fold(Either.left, f);
+      ma.fold(Api.left, f);
 }

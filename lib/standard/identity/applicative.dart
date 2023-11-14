@@ -6,7 +6,7 @@ class Applicative extends specs.ApplicativeWithPureAndApply<IdentityK> {
   const Applicative();
 
   @override
-  HKP<IdentityK, A> pure<A>(A a) => Identity.id(a);
+  HKP<IdentityK, A> pure<A>(A a) => Api.id(a);
 
   @override
   HKP<IdentityK, B> apply<A, B>(

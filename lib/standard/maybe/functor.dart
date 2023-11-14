@@ -8,5 +8,5 @@ class Functor implements specs.Functor<MaybeK> {
 
   @override
   HKP<MaybeK, B> map<A, B>(Fun<A, B> f, HKP<MaybeK, A> ma) =>
-      ma.fold(f.then(Maybe.some), Maybe.none);
+      ma.fold(f.then(Api.some), Api.none);
 }

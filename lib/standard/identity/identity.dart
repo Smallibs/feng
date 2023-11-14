@@ -13,6 +13,8 @@ final class Api {
   static const specs.Functor<IdentityK> functor = Functor();
   static const specs.Applicative<IdentityK> applicative = Applicative();
   static const specs.Monad<IdentityK> monad = Monad();
+
+  static HKP<IdentityK, A> id<A>(A a) => Identity(a);
 }
 
 sealed class IdentityK {
@@ -21,8 +23,6 @@ sealed class IdentityK {
 }
 
 final class Identity<A> implements HKP<IdentityK, A> {
-  static HKP<IdentityK, A> id<A>(A a) => Identity(a);
-
   final A _id;
 
   Identity(this._id);

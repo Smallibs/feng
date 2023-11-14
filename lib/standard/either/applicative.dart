@@ -7,11 +7,11 @@ class Applicative<E> extends specs.ApplicativeWithPureAndApply<EitherK<E>> {
   final Functor<E> functor = Functor();
 
   @override
-  HKP<EitherK<E>, A> pure<A>(A a) => Either.right(a);
+  HKP<EitherK<E>, A> pure<A>(A a) => Api.right(a);
 
   @override
   HKP<EitherK<E>, B> apply<A, B>(
           HKP<EitherK<E>, B Function(A)> mf, HKP<EitherK<E>, A> ma) =>
       mf.fold(
-          Either.left, (f) => ma.fold(Either.left, (a) => Either.right(f(a))));
+          Api.left, (f) => ma.fold(Api.left, (a) => Api.right(f(a))));
 }
