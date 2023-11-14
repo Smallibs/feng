@@ -12,13 +12,24 @@ mixin Monad<M> on Applicative<M> {
 
 abstract class MonadWithPureAndApply<M> extends ApplicativeWithPureAndApply<M>
     implements Monad<M> {
-  const MonadWithPureAndApply();
+  final Applicative<M> applicative;
+
+  const MonadWithPureAndApply(this.applicative);
 
   @override
   HKP<M, A> returns<A>(A a) => pure(a);
 
   @override
   HKP<M, A> join<A>(HKP<M, HKP<M, A>> mma) => bind(mma, id);
+
+  // Delegation to Applicative
+
+  @override
+  HKP<M, A> pure<A>(A a) => applicative.pure(a);
+
+  @override
+  HKP<M, B> apply<A, B>(HKP<M, Fun<A, B>> mf, HKP<M, A> ma) =>
+      applicative.apply(mf, ma);
 }
 
 extension BindExtension<E extends Monad<M>, M, A> on (E, HKP<M, A>) {

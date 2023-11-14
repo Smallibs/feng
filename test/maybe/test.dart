@@ -8,7 +8,7 @@ void main() {
     final ma = Maybe.some(1);
 
     // When
-    final mb = Maybe.functor.map((i) => i + 1, ma);
+    final mb = Api.functor.map((i) => i + 1, ma);
 
     // Then
     expect(mb, Maybe.some(2));
@@ -19,7 +19,7 @@ void main() {
     final ma = Maybe.none();
 
     // When
-    final mb = Maybe.functor.map((i) => i + 1, ma);
+    final mb = Api.functor.map((i) => i + 1, ma);
 
     // Then
     expect(mb, Maybe.none());
@@ -30,7 +30,7 @@ void main() {
     final ma = Maybe.some(1);
 
     // When
-    final mb = Maybe.applicative.apply(Maybe.some((int i) => i + 1), ma);
+    final mb = Api.applicative.apply(Maybe.some((int i) => i + 1), ma);
 
     // Then
     expect(mb, Maybe.some(2));
@@ -42,7 +42,7 @@ void main() {
     final ma = Maybe.some(1);
 
     // When
-    final mb = Maybe.applicative.apply(Maybe.none<Fun<int, int>>(), ma);
+    final mb = Api.applicative.apply(Maybe.none<Fun<int, int>>(), ma);
 
     // Then
     expect(mb, Maybe.none<int>());
@@ -53,7 +53,7 @@ void main() {
     final ma = Maybe.none<int>();
 
     // When
-    final mb = Maybe.applicative.apply(Maybe.some((int i) => i + 1), ma);
+    final mb = Api.applicative.apply(Maybe.some((int i) => i + 1), ma);
 
     // Then
     expect(mb, Maybe.none<int>());
@@ -64,7 +64,7 @@ void main() {
     final ma = Maybe.some(1);
 
     // When
-    final mb = Maybe.monad.bind(ma, (i) => Maybe.some(i + 1));
+    final mb = Api.monad.bind(ma, (i) => Maybe.some(i + 1));
 
     // Then
     expect(mb, Maybe.some(2));
@@ -75,7 +75,7 @@ void main() {
     final ma = Maybe.none<int>();
 
     // When
-    final mb = Maybe.monad.bind(ma, (i) => Maybe.some(i + 1));
+    final mb = Api.monad.bind(ma, (i) => Maybe.some(i + 1));
 
     // Then
     expect(mb, Maybe.none<int>());
@@ -86,7 +86,7 @@ void main() {
     final ma = Maybe.some(1);
 
     // When
-    final mb = Maybe.monad.bind(ma, (i) => Maybe.none<int>());
+    final mb = Api.monad.bind(ma, (i) => Maybe.none<int>());
 
     // Then
     expect(mb, Maybe.none<int>());

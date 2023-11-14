@@ -11,7 +11,8 @@ Feng is a library for [Dart](https://dart.dev) providing some functional program
 Some incarnations are available like:
 
 - Maybe,
-- Either
+- Either, 
+- Future
 
 ## Design approach
 
@@ -20,19 +21,14 @@ TODO
 ## Monad Example
 
 ```dart
-void main() {
-  final monad = Monad();
-
-  final ma = monad
-      .returns((x) => x + 1)
-      .using(monad)
-      .apply(monad.returns(2))
-      .bind((i) => monad.returns((j) => i + j))
-      .apply(monad.returns(4))
-      .map((i) => i.toString());
-
-  // ...
-}
+HKP<M, String> example<M>(Monad<M> monad) =>
+    monad
+        .returns((x) => x + 1)
+        .using(monad)
+        .apply(monad.returns(2))
+        .bind((i) => monad.returns((j) => i + j))
+        .apply(monad.returns(4))
+        .map((i) => i.toString());
 ```
 
 # License

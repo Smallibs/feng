@@ -8,18 +8,20 @@ import 'package:feng/standard/either/applicative.dart';
 import 'package:feng/standard/either/functor.dart';
 import 'package:feng/standard/either/monad.dart';
 
+final class Api {
+  static specs.Functor<EitherK<E>> functor<E>() => Functor();
+
+  static specs.Applicative<EitherK<E>> applicative<E>() => Applicative();
+
+  static specs.Monad<EitherK<E>> monad<E>() => Monad();
+}
+
 sealed class EitherK<E> {
   // Unsafe part but sealed capability reduces to zero any risk of bad cast!
   static Either<E, A> fix<E, A>(HKP<EitherK<E>, A> ma) => ma as Either<E, A>;
 }
 
 sealed class Either<E, A> implements HKP<EitherK<E>, A> {
-  static specs.Functor<EitherK<E>> functor<E>() => Functor();
-
-  static specs.Applicative<EitherK<E>> applicative<E>() => Applicative();
-
-  static specs.Monad<EitherK<E>> monad<E>() => Monad();
-
   static Either<E, A> right<E, A>(A a) => _Right(a);
 
   static Either<E, A> left<E, A>(E e) => _Left(e);

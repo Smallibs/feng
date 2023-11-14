@@ -8,16 +8,19 @@ import 'package:feng/standard/maybe/functor.dart';
 import 'package:feng/standard/maybe/applicative.dart';
 import 'package:feng/standard/maybe/monad.dart';
 
+final class Api {
+  static const specs.Functor<MaybeK> functor = Functor();
+  static const specs.Applicative<MaybeK> applicative = Applicative();
+  static const specs.Monad<MaybeK> monad = Monad();
+}
+
 sealed class MaybeK {
+
   // Unsafe part but sealed capability reduces to zero any risk of bad cast!
   static Maybe<A> fix<A>(HKP<MaybeK, A> ma) => ma as Maybe<A>;
 }
 
 sealed class Maybe<A> implements HKP<MaybeK, A> {
-  static const specs.Functor<MaybeK> functor = Functor();
-  static const specs.Applicative<MaybeK> applicative = Applicative();
-  static const specs.Monad<MaybeK> monad = Monad();
-
   static Maybe<A> some<A>(A b) => _Some(b);
 
   static Maybe<A> none<A>() => _None();

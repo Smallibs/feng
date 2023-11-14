@@ -8,7 +8,7 @@ void main() {
     final ma = Either.right(1);
 
     // When
-    final mb = Either.functor().map((i) => i + 1, ma);
+    final mb = Api.functor().map((i) => i + 1, ma);
 
     // Then
     expect(mb, Either.right(2));
@@ -19,7 +19,7 @@ void main() {
     final ma = Either.left("Error");
 
     // When
-    final mb = Either.functor<String>().map((i) => i + 1, ma);
+    final mb = Api.functor<String>().map((i) => i + 1, ma);
 
     // Then
     expect(mb, Either.left("Error"));
@@ -30,7 +30,7 @@ void main() {
     final ma = Either.right(1);
 
     // When
-    final mb = Either.applicative().apply(Either.right((int i) => i + 1), ma);
+    final mb = Api.applicative().apply(Either.right((int i) => i + 1), ma);
 
     // Then
     expect(mb, Either.right(2));
@@ -41,8 +41,8 @@ void main() {
     final ma = Either.left<String, int>("Error");
 
     // When
-    final HKP<EitherK<String>, int> mb =
-        Either.applicative<String>().apply(Either.right((int i) => i + 1), ma);
+    final mb =
+        Api.applicative<String>().apply(Either.right((int i) => i + 1), ma);
 
     // Then
     expect(mb, Either.left<String, int>("Error"));
@@ -53,7 +53,7 @@ void main() {
     final ma = Either.right<String, int>(42);
 
     // When
-    final HKP<EitherK<String>, int> mb = Either.applicative<String>()
+    final mb = Api.applicative<String>()
         .apply(Either.left<String, Fun<int, int>>("Error"), ma);
 
     // Then
@@ -65,7 +65,7 @@ void main() {
     final ma = Either.right<String, int>(1);
 
     // When
-    final mb = Either.monad<String>().bind(ma, (i) => Either.right(i + 1));
+    final mb = Api.monad<String>().bind(ma, (i) => Either.right(i + 1));
 
     // Then
     expect(mb, Either.right<String, int>(2));
@@ -76,7 +76,7 @@ void main() {
     final ma = Either.left<String, int>("Error");
 
     // When
-    final mb = Either.monad<String>().bind(ma, (i) => Either.right(i + 1));
+    final mb = Api.monad<String>().bind(ma, (i) => Either.right(i + 1));
 
     // Then
     expect(mb, Either.left<String, int>("Error"));
@@ -87,8 +87,8 @@ void main() {
     final ma = Either.right<String, int>(1);
 
     // When
-    final mb = Either.monad<String>()
-        .bind(ma, (i) => Either.left<String, int>("Error"));
+    final mb =
+        Api.monad<String>().bind(ma, (i) => Either.left<String, int>("Error"));
 
     // Then
     expect(mb, Either.left<String, int>("Error"));
