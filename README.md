@@ -11,6 +11,7 @@ Feng is a library for [Dart](https://dart.dev) providing some functional program
 Some incarnations are available like:
 
 - Maybe,
+- Try,
 - Either, 
 - Future
 
