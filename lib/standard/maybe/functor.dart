@@ -1,8 +1,7 @@
 import 'package:feng/core/fun.dart';
 import 'package:feng/core/types.dart';
 import 'package:feng/specs/functor.dart' as specs;
-
-import 'maybe.dart';
+import 'package:feng/standard/maybe/maybe.dart';
 
 class Functor implements specs.Functor<MaybeK> {
   const Functor();
