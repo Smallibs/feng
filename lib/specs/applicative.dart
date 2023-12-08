@@ -2,7 +2,7 @@ import 'package:feng/core/fun.dart';
 import 'package:feng/core/types.dart';
 import 'package:feng/specs/functor.dart';
 
-mixin Applicative<M> {
+mixin Applicative<M> on Functor<M> {
   HKP<M, A> pure<A>(A a);
 
   HKP<M, (A, B)> product<A, B>(HKP<M, A> ma, HKP<M, B> mb);
