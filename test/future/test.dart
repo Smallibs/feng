@@ -39,7 +39,6 @@ void main() {
 
   test('should not perform an apply 1/2', () async {
     // Given
-// Given
     final error = Error();
     final ma = Api.success(1);
 

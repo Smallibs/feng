@@ -1,7 +1,6 @@
 import 'package:feng/core/types.dart';
 import 'package:feng/specs/monad.dart' as specs;
 import 'package:feng/standard/either/either.dart';
-import 'package:feng/standard/either/applicative.dart';
 
 class Monad<E> extends specs.MonadWithPureAndApply<EitherK<E>> {
   Monad() : super(Api.applicative());

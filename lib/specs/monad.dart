@@ -2,7 +2,7 @@ import 'package:feng/core/fun.dart';
 import 'package:feng/core/types.dart';
 import 'package:feng/specs/applicative.dart';
 
-mixin Monad<M> on Applicative<M> {
+mixin Monad<M> {
   HKP<M, A> returns<A>(A a);
 
   HKP<M, A> join<A>(HKP<M, HKP<M, A>> mma);
