@@ -1,6 +1,6 @@
 import 'package:feng/core/types.dart';
-import 'package:feng/specs/functor.dart' as specs;
 import 'package:feng/specs/applicative.dart' as specs;
+import 'package:feng/specs/functor.dart' as specs;
 import 'package:feng/specs/monad.dart' as specs;
 import 'package:feng/standard/future/applicative.dart';
 import 'package:feng/standard/future/functor.dart';
@@ -13,8 +13,8 @@ final class Api {
 
   static HKP<FutureK, A> success<A>(A a) => FutureK.of(Future(() => a));
 
-  static HKP<FutureK, A> failure<A>(Error e) =>
-      FutureK.of(Future.error(e));
+  static HKP<FutureK, A> failure<A>(Object e) =>
+      FutureK.of(Future(() => throw e));
 }
 
 sealed class FutureK {

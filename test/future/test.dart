@@ -52,10 +52,12 @@ void main() {
   test('should not perform an apply 2/2', () async {
     // Given
     final error = Error();
-    final ma = Api.failure<int>(error);
 
     // When
-    final mb = Api.applicative.apply(Api.success((int i) => i + 1), ma);
+    final mb = Api.applicative.apply(
+      Api.success((int i) => i + 1),
+      Api.failure<int>(error),
+    );
 
     // Then
     expectThrown(mb, error);
