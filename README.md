@@ -14,7 +14,8 @@ Some incarnations are available like:
 - Maybe,
 - Try,
 - Either, 
-- Future
+- Future,
+- Reader
 
 ## Design approach
 
