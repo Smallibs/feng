@@ -1,12 +1,9 @@
 import 'package:feng/core/types.dart';
-import 'package:feng/core/types.dart';
-
 import 'package:feng/specs/applicative.dart' as specs;
 import 'package:feng/specs/functor.dart' as specs;
 import 'package:feng/specs/monad.dart' as specs;
-
-import 'package:feng/standard/identity/functor.dart';
 import 'package:feng/standard/identity/applicative.dart';
+import 'package:feng/standard/identity/functor.dart';
 import 'package:feng/standard/identity/monad.dart';
 
 final class Api {

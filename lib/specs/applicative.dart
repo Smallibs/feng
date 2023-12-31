@@ -21,7 +21,7 @@ abstract class ApplicativeWithPureAndApply<M> implements Applicative<M> {
   HKP<M, B> map<A, B>(Fun<A, B> f, HKP<M, A> ma) => apply(pure(f), ma);
 }
 
-extension ApplyExtension<E extends Applicative<M>, M, A, B> on (
+extension ApplicativeApply<E extends Applicative<M>, M, A, B> on (
   E,
   HKP<M, Fun<A, B>>
 ) {

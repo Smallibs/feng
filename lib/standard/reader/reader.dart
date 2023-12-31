@@ -13,7 +13,7 @@ sealed class ReaderK<F, E> {
       ma as Reader<F, E, A>;
 }
 
-extension Invoke<F, E, A> on HKP<ReaderK<F, E>, A> {
+extension ReaderRun<F, E, A> on HKP<ReaderK<F, E>, A> {
   HKP<F, A> run(E e) => ReaderK.fix(this).run(e);
 }
 
@@ -33,8 +33,12 @@ class OverMonad<F, E> {
   specs.Applicative<ReaderK<F, E>> applicative() => Applicative(_inner);
 
   specs.Monad<ReaderK<F, E>> monad() => Monad(this._inner);
+
+  Reader<F, E, E> ask() => Reader(_inner.returns);
 }
 
 final class Over<E> extends OverMonad<identity.IdentityK, E> {
   Over() : super(identity.Api.monad);
 }
+
+Reader<F, E, A> reader<F, E, A>(Fun<E, HKP<F, A>> f) => Reader(f);

@@ -32,6 +32,6 @@ abstract class MonadWithPureAndApply<M> extends ApplicativeWithPureAndApply<M>
       applicative.apply(mf, ma);
 }
 
-extension BindExtension<E extends Monad<M>, M, A> on (E, HKP<M, A>) {
+extension MonadBind<E extends Monad<M>, M, A> on (E, HKP<M, A>) {
   (E, HKP<M, B>) bind<B>(Fun<A, HKP<M, B>> f) => ($1, $1.bind($2, f));
 }

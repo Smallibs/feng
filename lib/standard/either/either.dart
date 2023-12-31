@@ -1,9 +1,7 @@
 import 'package:feng/core/types.dart';
-
 import 'package:feng/specs/applicative.dart' as specs;
 import 'package:feng/specs/functor.dart' as specs;
 import 'package:feng/specs/monad.dart' as specs;
-
 import 'package:feng/standard/either/applicative.dart';
 import 'package:feng/standard/either/functor.dart';
 import 'package:feng/standard/either/monad.dart';

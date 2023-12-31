@@ -19,7 +19,7 @@ Some incarnations are available like:
 
 ## Design approach
 
-TODO
+
 
 ## Monad Example
 
