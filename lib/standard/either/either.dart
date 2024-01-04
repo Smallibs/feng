@@ -26,46 +26,46 @@ sealed class EitherK<E> {
 sealed class Either<E, A> implements HKP<EitherK<E>, A> {}
 
 final class _Left<E, A> implements Either<E, A> {
-  final E _e;
+  final E _value;
 
-  _Left(this._e);
+  _Left(this._value);
 
   @override
-  String toString() => 'Left($_e)';
+  String toString() => 'Left($_value)';
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is _Left && runtimeType == other.runtimeType && _e == other._e;
+      other is _Left && runtimeType == other.runtimeType && _value == other._value;
 
   @override
-  int get hashCode => _e.hashCode;
+  int get hashCode => _value.hashCode;
 }
 
 final class _Right<E, A> implements Either<E, A> {
-  final A _a;
+  final A _value;
 
-  _Right(this._a);
+  _Right(this._value);
 
   @override
-  String toString() => 'Right($_a)';
+  String toString() => 'Right($_value)';
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is _Right && runtimeType == other.runtimeType && _a == other._a;
+      other is _Right && runtimeType == other.runtimeType && _value == other._value;
 
   @override
-  int get hashCode => _a.hashCode;
+  int get hashCode => _value.hashCode;
 }
 
 extension FoldExtension<E, A> on HKP<EitherK<E>, A> {
   B fold<B>(Fun<E, B> left, Fun<A, B> right) {
     switch (EitherK.fix(this)) {
-      case _Left(_e: var e):
-        return left(e);
-      case _Right(_a: var a):
-        return right(a);
+      case _Left(_value: var value):
+        return left(value);
+      case _Right(_value: var value):
+        return right(value);
     }
   }
 }

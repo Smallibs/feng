@@ -19,13 +19,13 @@ final class Api {
 
 sealed class FutureK {
   // Unsafe part but sealed capability reduces to zero any risk of bad cast!
-  static Future<A> fix<A>(HKP<FutureK, A> ma) => (ma as _Future<A>).future;
+  static Future<A> fix<A>(HKP<FutureK, A> ma) => (ma as _Future<A>)._value;
 
   static HKP<FutureK, A> of<A>(Future<A> future) => _Future(future);
 }
 
 final class _Future<A> extends HKP<FutureK, A> {
-  final Future<A> future;
+  final Future<A> _value;
 
-  _Future(this.future);
+  _Future(this._value);
 }

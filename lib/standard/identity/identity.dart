@@ -20,24 +20,24 @@ sealed class IdentityK {
 }
 
 final class Identity<A> implements HKP<IdentityK, A> {
-  final A _id;
+  final A _value;
 
-  Identity(this._id);
+  Identity(this._value);
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is Identity && runtimeType == other.runtimeType && _id == other._id;
+      other is Identity && runtimeType == other.runtimeType && _value == other._value;
 
   @override
-  int get hashCode => _id.hashCode;
+  int get hashCode => _value.hashCode;
 
   @override
   String toString() {
-    return 'Identity($_id)';
+    return 'Identity($_value)';
   }
 }
 
 extension FoldExtension<A> on HKP<IdentityK, A> {
-  B fold<B>(Fun<A, B> f) => f(IdentityK.fix(this)._id);
+  B fold<B>(Fun<A, B> f) => f(IdentityK.fix(this)._value);
 }

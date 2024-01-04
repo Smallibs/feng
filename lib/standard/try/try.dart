@@ -26,26 +26,26 @@ sealed class Try<A> implements HKP<TryK, A> {
 }
 
 final class _Success<A> implements Try<A> {
-  final A _a;
+  final A _value;
 
-  _Success(this._a);
+  _Success(this._value);
 
   @override
-  String toString() => 'Some($_a)';
+  String toString() => 'Some($_value)';
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is _Success && runtimeType == other.runtimeType && _a == other._a;
+      other is _Success && runtimeType == other.runtimeType && _value == other._value;
 
   @override
-  int get hashCode => _a.hashCode;
+  int get hashCode => _value.hashCode;
 }
 
 final class _Failure<A> implements Try<A> {
-  final Error _e;
+  final Error _value;
 
-  _Failure(this._e);
+  _Failure(this._value);
 
   @override
   String toString() => 'None';
@@ -62,10 +62,10 @@ final class _Failure<A> implements Try<A> {
 extension FoldExtension<A> on HKP<TryK, A> {
   B fold<B>(Fun<A, B> success, Fun<Error, B> failure) {
     switch (TryK.fix(this)) {
-      case _Success(_a: var a):
-        return success(a);
-      case _Failure(_e: var e):
-        return failure(e);
+      case _Success(_value: var value):
+        return success(value);
+      case _Failure(_value: var value):
+        return failure(value);
     }
   }
 }
