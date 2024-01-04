@@ -59,7 +59,7 @@ final class _Failure<A> implements Try<A> {
   int get hashCode => 0;
 }
 
-extension FoldExtension<A> on HKP<TryK, A> {
+extension TryFold<A> on HKP<TryK, A> {
   B fold<B>(Fun<A, B> success, Fun<Error, B> failure) {
     switch (TryK.fix(this)) {
       case _Success(_value: var value):

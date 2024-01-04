@@ -55,7 +55,7 @@ final class _None<A> implements Maybe<A> {
   int get hashCode => 0;
 }
 
-extension FoldExtension<A> on HKP<MaybeK, A> {
+extension MaybeFold<A> on HKP<MaybeK, A> {
   B fold<B>(Fun<A, B> some, Supplier<B> none) {
     switch (MaybeK.fix(this)) {
       case _Some(_value: var value):

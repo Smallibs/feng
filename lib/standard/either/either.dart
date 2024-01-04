@@ -59,7 +59,7 @@ final class _Right<E, A> implements Either<E, A> {
   int get hashCode => _value.hashCode;
 }
 
-extension FoldExtension<E, A> on HKP<EitherK<E>, A> {
+extension EitherFold<E, A> on HKP<EitherK<E>, A> {
   B fold<B>(Fun<E, B> left, Fun<A, B> right) {
     switch (EitherK.fix(this)) {
       case _Left(_value: var value):
