@@ -43,7 +43,10 @@ void main() {
     final ma = Api.success(1);
 
     // When
-    final mb = Api.applicative.apply(Api.failure<Fun<int, int>>(error), ma);
+    final mb = Api.applicative.apply(
+      Api.failure<Fun<int, int>>(error),
+      ma,
+    );
 
     // Then
     expectThrown(mb, error);

@@ -11,7 +11,7 @@ final class Api {
   static const specs.Applicative<FutureK> applicative = Applicative();
   static const specs.Monad<FutureK> monad = Monad();
 
-  static HKP<FutureK, A> success<A>(A a) => FutureK.of(Future(() => a));
+  static HKP<FutureK, A> success<A>(A a) => FutureK.of(Future.value(a));
 
   static HKP<FutureK, A> failure<A>(Object e) =>
       FutureK.of(Future(() => throw e));
