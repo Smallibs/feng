@@ -40,13 +40,11 @@ void main() {
   test('should not perform an apply 1/2', () async {
     // Given
     final error = Error();
+    final mf = Api.failure<Fun<int, int>>(error);
     final ma = Api.success(1);
 
     // When
-    final mb = Api.applicative.apply(
-      Api.failure<Fun<int, int>>(error),
-      ma,
-    );
+    final mb = Api.applicative.apply(mf, ma);
 
     // Then
     expectThrown(mb, error);
@@ -55,12 +53,11 @@ void main() {
   test('should not perform an apply 2/2', () async {
     // Given
     final error = Error();
+    final mf = Api.success((int i) => i + 1);
+    final ma = Api.failure<int>(error);
 
     // When
-    final mb = Api.applicative.apply(
-      Api.success((int i) => i + 1),
-      Api.failure<int>(error),
-    );
+    final mb = Api.applicative.apply(mf, ma);
 
     // Then
     expectThrown(mb, error);

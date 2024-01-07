@@ -26,12 +26,13 @@ Some incarnations are available like:
 ```dart
 HKP<M, String> example<M>(Monad<M> monad) =>
     monad
-        .returns((x) => x + 1)
-        .using(monad)
-        .apply(monad.returns(2))
-        .bind((i) => monad.returns((j) => i + j))
-        .apply(monad.returns(4))
-        .map((i) => i.toString());
+    .returns((x) => x + 1)
+    .using(monad)
+    .apply(monad.returns(2))
+    .bind((i) => monad.returns((j) => i + j))
+    .apply(monad.returns(4))
+    .map((i) => i.toString())
+    .end();
 ```
 
 # License
