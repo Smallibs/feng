@@ -23,16 +23,29 @@ Some incarnations are available like:
 
 ## Monad Example
 
+A program can be designed using a monad for instance.
+
 ```dart
-HKP<M, String> example<M>(Monad<M> monad) =>
+HKP<M, String> example<M>(Monad<M> monad, HKP<M, int> ma) =>
     monad
-    .returns((x) => x + 1)
-    .using(monad)
-    .apply(monad.returns(2))
-    .bind((i) => monad.returns((j) => i + j))
-    .apply(monad.returns(4))
-    .map((i) => i.toString())
-    .end();
+        .returns((x) => x + 1)
+        .using(monad)
+        .apply(ma)
+        .bind((i) => monad.returns((j) => i + j))
+        .apply(monad.returns(4))
+        .map((i) => i.toString())
+        .end();
+```
+
+Then this program can be executed with a chosen effect has illustrated in the next code fragment.
+
+```dart
+import 'package:feng/standard/future/future.dart';
+
+Future<void> main() async {
+  final result = await Api.future(example(Api.monad, Api.success(2)));
+  // ...
+}
 ```
 
 # License

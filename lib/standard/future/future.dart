@@ -15,6 +15,8 @@ final class Api {
 
   static HKP<FutureK, A> failure<A>(Object e) =>
       FutureK.of(Future(() => throw e));
+
+  static Future<A> future<A>(HKP<FutureK, A> e) => FutureK.fix(e);
 }
 
 sealed class FutureK {

@@ -1,11 +1,9 @@
 import 'package:feng/core/types.dart';
-
 import 'package:feng/specs/applicative.dart' as specs;
 import 'package:feng/specs/functor.dart' as specs;
 import 'package:feng/specs/monad.dart' as specs;
-
-import 'package:feng/standard/try/functor.dart';
 import 'package:feng/standard/try/applicative.dart';
+import 'package:feng/standard/try/functor.dart';
 import 'package:feng/standard/try/monad.dart';
 
 final class Api {
@@ -36,7 +34,9 @@ final class _Success<A> implements Try<A> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is _Success && runtimeType == other.runtimeType && _value == other._value;
+      other is _Success &&
+          runtimeType == other.runtimeType &&
+          _value == other._value;
 
   @override
   int get hashCode => _value.hashCode;

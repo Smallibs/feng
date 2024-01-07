@@ -27,7 +27,9 @@ final class Identity<A> implements HKP<IdentityK, A> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is Identity && runtimeType == other.runtimeType && _value == other._value;
+      other is Identity &&
+          runtimeType == other.runtimeType &&
+          _value == other._value;
 
   @override
   int get hashCode => _value.hashCode;

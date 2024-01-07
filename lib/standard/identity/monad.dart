@@ -6,6 +6,7 @@ class Monad extends specs.MonadWithPureAndApply<IdentityK> {
   const Monad() : super(Api.applicative);
 
   @override
-  HKP<IdentityK, B> bind<A, B>(HKP<IdentityK, A> ma, Fun<A, HKP<IdentityK, B>> f) =>
+  HKP<IdentityK, B> bind<A, B>(
+          HKP<IdentityK, A> ma, Fun<A, HKP<IdentityK, B>> f) =>
       ma.fold(f);
 }

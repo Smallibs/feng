@@ -1,11 +1,9 @@
 import 'package:feng/core/types.dart';
-
 import 'package:feng/specs/applicative.dart' as specs;
 import 'package:feng/specs/functor.dart' as specs;
 import 'package:feng/specs/monad.dart' as specs;
-
-import 'package:feng/standard/maybe/functor.dart';
 import 'package:feng/standard/maybe/applicative.dart';
+import 'package:feng/standard/maybe/functor.dart';
 import 'package:feng/standard/maybe/monad.dart';
 
 final class Api {
@@ -36,7 +34,9 @@ final class _Some<A> implements Maybe<A> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is _Some && runtimeType == other.runtimeType && _value == other._value;
+      other is _Some &&
+          runtimeType == other.runtimeType &&
+          _value == other._value;
 
   @override
   int get hashCode => _value.hashCode;

@@ -36,7 +36,9 @@ final class _Left<E, A> implements Either<E, A> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is _Left && runtimeType == other.runtimeType && _value == other._value;
+      other is _Left &&
+          runtimeType == other.runtimeType &&
+          _value == other._value;
 
   @override
   int get hashCode => _value.hashCode;
@@ -53,7 +55,9 @@ final class _Right<E, A> implements Either<E, A> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is _Right && runtimeType == other.runtimeType && _value == other._value;
+      other is _Right &&
+          runtimeType == other.runtimeType &&
+          _value == other._value;
 
   @override
   int get hashCode => _value.hashCode;
