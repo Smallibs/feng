@@ -7,14 +7,11 @@ import 'package:feng/standard/reader/applicative.dart' show Applicative;
 import 'package:feng/standard/reader/functor.dart';
 import 'package:feng/standard/reader/monad.dart';
 
-sealed class ReaderK<F, E> {
-  // Unsafe part but sealed capability reduces to zero any risk of bad cast!
-  static Reader<F, E, A> fix<F, E, A>(HKP<ReaderK<F, E>, A> ma) =>
-      ma as Reader<F, E, A>;
-}
+sealed class ReaderK<F, E> {}
 
 extension ReaderRun<F, E, A> on HKP<ReaderK<F, E>, A> {
-  HKP<F, A> run(E e) => ReaderK.fix(this).run(e);
+  // Unsafe part but sealed capability reduces to zero any risk of bad cast!
+  HKP<F, A> run(E e) => (this as Reader<F, E, A>).run(e);
 }
 
 final class Reader<F, E, A> extends HKP<ReaderK<F, E>, A> {

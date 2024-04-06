@@ -12,10 +12,7 @@ final class Api {
   static const specs.Monad<TryK> monad = Monad();
 }
 
-sealed class TryK {
-  // Unsafe part but sealed capability reduces to zero any risk of bad cast!
-  static Try<A> fix<A>(HKP<TryK, A> ma) => ma as Try<A>;
-}
+sealed class TryK {}
 
 sealed class Try<A> implements HKP<TryK, A> {
   static Try<A> success<A>(A b) => _Success(b);
@@ -61,7 +58,8 @@ final class _Failure<A> implements Try<A> {
 
 extension TryFold<A> on HKP<TryK, A> {
   B fold<B>(Fun<A, B> success, Fun<Error, B> failure) {
-    switch (TryK.fix(this)) {
+    // Unsafe part but sealed capability reduces to zero any risk of bad cast!
+    switch (this as Try<A>) {
       case _Success(_value: var value):
         return success(value);
       case _Failure(_value: var value):

@@ -8,7 +8,7 @@ class Functor<E> implements specs.Functor<FutureK> {
   // This solution do not use `.then(...)` since it's not safe in Dart!
   @override
   HKP<FutureK, B> map<A, B>(Fun<A, B> f, HKP<FutureK, A> ma) =>
-      FutureK.of(_map(f, FutureK.fix(ma)));
+      FutureK.of(_map(f, ma.fix()));
 
   Future<B> _map<A, B>(Fun<A, B> f, Future<A> ma) async {
     final a = await ma;

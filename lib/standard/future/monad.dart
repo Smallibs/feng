@@ -8,7 +8,7 @@ class Monad extends specs.MonadWithPureAndApply<FutureK> {
   // This solution do not use `.then(...)` since it's not safe in Dart!
   @override
   HKP<FutureK, B> bind<A, B>(HKP<FutureK, A> ma, Fun<A, HKP<FutureK, B>> f) =>
-      FutureK.of(_bind(FutureK.fix(ma), (a) => FutureK.fix(f(a))));
+      FutureK.of(_bind(ma.fix(), (a) => f(a).fix()));
 
   Future<B> _bind<A, B>(Future<A> ma, Fun<A, Future<B>> f) async {
     final a = await ma;

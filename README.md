@@ -19,7 +19,11 @@ Some incarnations are available like:
 
 ## Design approach
 
+In Dart, we can specify Higher-Kinded Polymorphism (HKP for short) is denoted by the type `HKP` and it came from the 
+[Lightweight higher-kinded polymorphism](https://www.cl.cam.ac.uk/~jdy22/papers/lightweight-higher-kinded-polymorphism.pdf) 
+paper.
 
+### 
 
 ## Monad Example
 

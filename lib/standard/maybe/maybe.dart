@@ -16,10 +16,7 @@ final class Api {
   static Maybe<A> none<A>() => _None();
 }
 
-sealed class MaybeK {
-  // Unsafe part but sealed capability reduces to zero any risk of bad cast!
-  static Maybe<A> fix<A>(HKP<MaybeK, A> ma) => ma as Maybe<A>;
-}
+sealed class MaybeK {}
 
 sealed class Maybe<A> implements HKP<MaybeK, A> {}
 
@@ -57,7 +54,8 @@ final class _None<A> implements Maybe<A> {
 
 extension MaybeFold<A> on HKP<MaybeK, A> {
   B fold<B>(Fun<A, B> some, Supplier<B> none) {
-    switch (MaybeK.fix(this)) {
+    // Unsafe part but sealed capability reduces to zero any risk of bad cast!
+    switch (this as Maybe<A>) {
       case _Some(_value: var value):
         return some(value);
       case _None():

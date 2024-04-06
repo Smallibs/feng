@@ -11,7 +11,7 @@ void main() {
     final mb = Api.functor.map((i) => i + 1, ma);
 
     // Then
-    expect(await FutureK.fix(mb), 2);
+    expect(await mb.fix(), 2);
   });
 
   test('should not perform a map', () async {
@@ -34,7 +34,7 @@ void main() {
     final mb = Api.applicative.apply(Api.success((int i) => i + 1), ma);
 
     // Then
-    expect(await FutureK.fix(mb), 2);
+    expect(await mb.fix(), 2);
   });
 
   test('should not perform an apply 1/2', () async {
@@ -71,7 +71,7 @@ void main() {
     final mb = Api.monad.bind(ma, (i) => Api.success(i + 1));
 
     // Then
-    expect(await FutureK.fix(mb), 2);
+    expect(await mb.fix(), 2);
   });
 
   test('should not perform a bind 1/2', () async {
@@ -101,7 +101,7 @@ void main() {
 
 void expectThrown<A>(HKP<FutureK, A> mb, Error error) async {
   try {
-    await FutureK.fix(mb);
+    await mb.fix();
     assert(false);
   } catch (e) {
     expect(e, error);
