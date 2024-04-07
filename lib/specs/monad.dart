@@ -1,7 +1,6 @@
 import 'package:feng/core/fun.dart';
 import 'package:feng/core/types.dart';
 import 'package:feng/specs/applicative.dart';
-import 'package:feng/specs/infix.dart';
 
 mixin Monad<M> on Applicative<M> {
   HKP<M, A> returns<A>(A a);

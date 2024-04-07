@@ -25,13 +25,13 @@ class OverMonad<F, E> {
 
   OverMonad(this._inner);
 
-  specs.Functor<ReaderK<F, E>> functor() => Functor(_inner);
+  specs.Functor<ReaderK<F, E>> get functor => Functor(_inner);
 
-  specs.Applicative<ReaderK<F, E>> applicative() => Applicative(_inner);
+  specs.Applicative<ReaderK<F, E>> get applicative => Applicative(_inner);
 
-  specs.Monad<ReaderK<F, E>> monad() => Monad(this._inner);
+  specs.Monad<ReaderK<F, E>> get monad => Monad(this._inner);
 
-  Reader<F, E, E> ask() => Reader(_inner.returns);
+  Reader<F, E, E> get ask => Reader(_inner.returns);
 }
 
 final class Over<E> extends OverMonad<identity.IdentityK, E> {

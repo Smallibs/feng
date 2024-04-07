@@ -14,10 +14,7 @@ final class Api {
   static HKP<IdentityK, A> id<A>(A a) => Identity(a);
 }
 
-sealed class IdentityK {
-  // Unsafe part but sealed capability reduces to zero any risk of bad cast!
-  static Identity<A> fix<A>(HKP<IdentityK, A> ma) => ma as Identity<A>;
-}
+sealed class IdentityK {}
 
 final class Identity<A> implements HKP<IdentityK, A> {
   final A _value;
@@ -41,5 +38,5 @@ final class Identity<A> implements HKP<IdentityK, A> {
 }
 
 extension FoldExtension<A> on HKP<IdentityK, A> {
-  B fold<B>(Fun<A, B> f) => f(IdentityK.fix(this)._value);
+  B fold<B>(Fun<A, B> f) => f((this as Identity<A>)._value);
 }
